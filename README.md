@@ -4,6 +4,13 @@
 
 ## A simple spring-boot application was built to probate new technologies within Andersen internship v2
 
+## How to run
+
+### Note: requires Docker installed
+* docker-compose up
+* curl http://localhost:8080/cities
+
+
 ## Task 1
 
 Implement bookstore console application according next requirements and functionality:
