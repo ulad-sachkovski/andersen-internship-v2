@@ -13,7 +13,7 @@ spec:
         app: app
     spec:
       containers:
-        - name: car-service-image
+        - name: app
           image: uladsachkouski/demo-app:latest
           ports:
             - containerPort: 8080
