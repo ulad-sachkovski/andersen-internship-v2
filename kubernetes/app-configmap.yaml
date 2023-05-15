@@ -4,4 +4,4 @@ metadata:
   name: app
 data:
   SPRING_DATASOURCE_DRIVERCLASSNAME: org.postgresql.Driver
-  SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-0.postgres.default.svc.cluster.local:5432/cities
+  SPRING_DATASOURCE_URL: jdbc:postgresql://postgresql-0.postgresql.default.svc.cluster.local:5432/cities
