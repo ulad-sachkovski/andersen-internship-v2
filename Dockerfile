@@ -1,4 +1,4 @@
-FROM maven:3-openjdk-17 AS BUILD
+FROM maven:3.9.1-eclipse-temurin-17 AS BUILD
 RUN mkdir /usr/src/project
 COPY . /usr/src/project
 WORKDIR /usr/src/project
