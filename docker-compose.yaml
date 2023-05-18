@@ -29,6 +29,11 @@ services:
     depends_on:
       - "db"
       - "broker"
+    healthcheck:
+      test: "nc -z localhost 8080 || exit 1"
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
   zookeper:
     image: confluentinc/cp-zookeeper:latest
