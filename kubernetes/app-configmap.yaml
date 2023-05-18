@@ -4,3 +4,4 @@ metadata:
   name: app
 data:
   SPRING_DATASOURCE_URL: jdbc:postgresql://postgresql-0.postgresql.default.svc.cluster.local:5432/cities
+  SPRING_KAFKA_BOOTSTRAPSERVERS: INTERNAL://apache-kafka-0.apache-kafka.default.svc.cluster.local:9092
