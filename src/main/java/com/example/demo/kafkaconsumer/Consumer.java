@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Consumer {
 
-    private static final Logger LOG = LoggerFactory.getLogger(KafkaListener.class);
+    private static final Logger LOG = LoggerFactory.getLogger(Consumer.class);
 
     @KafkaListener(
             topics = "${kafka.topic}",
