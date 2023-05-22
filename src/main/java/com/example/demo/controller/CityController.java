@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,11 +24,13 @@ public class CityController {
     private final CityService cityService;
 
     @GetMapping
+    @Secured("ROLES_REGULAR_EMPLOYEE")
     public ResponseEntity<List<City>> getCityList() {
         return new ResponseEntity<>(cityService.getCities(), HttpStatus.OK);
     }
 
     @PostMapping
+    @Secured("ROLES_OPERATIONAL_MANAGER")
     public ResponseEntity<City> addCity(@RequestBody Map<String, String> body, @Value("${kafka.topic}") String topic) {
         String cityName = body.get("name");
         City city = cityService.addCity(City.builder()
