@@ -14,21 +14,26 @@ services:
       retries: 10
     ports:
       - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
   app:
     image: uladsachkouski/demo-app:latest
     build:
-      context: ./
+      context: ..
     restart: always
     container_name: app
     environment:
+
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/cities
       SPRING_KAFKA_BOOTSTRAPSERVERS: kafka:9092
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUERURI: http://keycloak:8080/realms/app
     ports:
       - "8080:8080"
     depends_on:
       - "db"
       - "broker"
+      - "authenticator"
     healthcheck:
       test: "nc -z localhost 8080 || exit 1"
       interval: 5s
@@ -68,3 +73,21 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+
+  authenticator:
+    image: keycloak/keycloak:21.1
+    container_name: keycloak
+    depends_on:
+      - "db"
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
+      KC_DB_USERNAME: postgres
+      KC_DB_PASSWORD: 123321
+    command: start-dev --import-realm
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./realm.json:/opt/keycloak/data/import/realm.json

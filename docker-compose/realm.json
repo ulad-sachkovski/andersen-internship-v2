@@ -1,0 +1,76 @@
+{
+  "id": "app",
+  "realm": "app",
+  "enabled": true,
+  "roles": {
+    "realm": [
+      {
+        "name": "OPERATIONAL_MANAGER",
+        "composite": false,
+        "clientRole": false,
+        "containerId": "app",
+        "attributes": {}
+      },
+      {
+        "name": "REGULAR_EMPLOYEE",
+        "composite": false,
+        "clientRole": false,
+        "containerId": "car-service",
+        "attributes": {}
+      }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "public",
+      "enabled": true,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": true,
+      "directAccessGrantsEnabled": true,
+      "publicClient": true,
+      "protocol": "openid-connect",
+      "redirectUris": [
+        "https://oidcdebugger.com/debug"
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "steve",
+      "enabled": true,
+      "firstName": "Steve",
+      "lastName": "Smith",
+      "email": "steve.smith@gmail.com",
+      "emailVerified": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "anna",
+          "temporary": "false"
+        }
+      ],
+      "realmRoles": [
+        "REGULAR_EMPLOYEE"
+      ]
+    },
+    {
+      "username": "george",
+      "enabled": true,
+      "firstName": "George",
+      "lastName": "Gray",
+      "email": "george.gray@gmail.com",
+      "emailVerified": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "george",
+          "temporary": "false"
+        }
+      ],
+      "realmRoles": [
+        "OPERATIONAL_MANAGER",
+        "REGULAR_EMPLOYEE"
+      ]
+    }
+  ]
+}
